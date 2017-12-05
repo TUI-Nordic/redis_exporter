@@ -3,12 +3,14 @@ package main
 import (
 	"encoding/csv"
 	"flag"
+	"fmt"
 	"net/http"
 	"os"
 	"runtime"
 	"strings"
 
 	"github.com/cloudfoundry-community/go-cfenv"
+	"github.com/go-redis/redis"
 	"github.com/oliver006/redis_exporter/exporter"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
@@ -42,6 +44,12 @@ var (
 
 func main() {
 	flag.Parse()
+
+	client := redis.NewClient(&redis.Options{
+		Addr:     "localhost:6379",
+		Password: "", // no password set
+		DB:       0,  // use default DB
+	})
 
 	switch *logFormat {
 	case "json":
@@ -108,8 +116,15 @@ func main() {
 	}
 
 	http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
-    w.Write([]byte("OK!\n"))
-})
+		pong, err := client.Ping().Result()
+		fmt.Println(pong, err)
+		if pong == "PONG" {
+			w.Write([]byte("OK!\n"))
+		} else {
+			w.WriteHeader(http.StatusInternalServerError)
+			w.Write([]byte("röv\n"))
+		}
+	})
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte(`
