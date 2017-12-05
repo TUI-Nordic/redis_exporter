@@ -2,6 +2,7 @@ redis_exporter
 coverage.out
 dist/
 pkg/
+vendor/
 src/
 .DS_Store
 .idea

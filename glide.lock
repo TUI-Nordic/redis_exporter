@@ -1,0 +1,54 @@
+hash: 716cb56d03b1a48f88a3974da1463c73b5df52a2e19169bfdb065473c69657c4
+updated: 2017-12-05T11:29:12.677834852+01:00
+imports:
+- name: github.com/beorn7/perks
+  version: 4c0e84591b9aa9e6dcfdf3e020114cd81f89d5f9
+  subpackages:
+  - quantile
+- name: github.com/cloudfoundry-community/go-cfenv
+  version: f920e9562d5f951cbf11785728f67258c38a10d0
+- name: github.com/garyburd/redigo
+  version: 34a326de1fea52965fa5ad664d3fc7163dd4b0a1
+  subpackages:
+  - internal
+  - redis
+- name: github.com/golang/protobuf
+  version: 1e59b77b52bf8e4b449a57e6f79f21226d571845
+  subpackages:
+  - proto
+- name: github.com/matttproud/golang_protobuf_extensions
+  version: c12348ce28de40eed0136aa2b644d0ee0650e56c
+  subpackages:
+  - pbutil
+- name: github.com/mitchellh/mapstructure
+  version: 06020f85339e21b2478f756a78e295255ffa4d6a
+- name: github.com/prometheus/client_golang
+  version: c5b7fccd204277076155f10851dad72b76a49317
+  subpackages:
+  - prometheus
+  - prometheus/promhttp
+- name: github.com/prometheus/client_model
+  version: 99fa1f4be8e564e8a6b613da7fa6f46c9edafc6c
+  subpackages:
+  - go
+- name: github.com/prometheus/common
+  version: 2e54d0b93cba2fd133edc32211dcc32c06ef72ca
+  subpackages:
+  - expfmt
+  - internal/bitbucket.org/ww/goautoneg
+  - model
+- name: github.com/prometheus/procfs
+  version: a6e9df898b1336106c743392c48ee0b71f5c4efa
+  subpackages:
+  - xfs
+- name: github.com/prometheus/prometheus
+  version: 30b4439bbd795fee4703b8f5015da6bf13fee0ac
+  subpackages:
+  - util/strutil
+- name: github.com/sirupsen/logrus
+  version: d26492970760ca5d33129d2d799e34be5c4782eb
+- name: golang.org/x/sys
+  version: 8b4580aae2a0dd0c231a45d3ccb8434ff533b840
+  subpackages:
+  - unix
+testImports: []
