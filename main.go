@@ -107,6 +107,10 @@ func main() {
 		http.Handle(*metricPath, prometheus.Handler())
 	}
 
+	http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
+    w.Write([]byte("OK!\n"))
+})
+
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte(`
 <html>
