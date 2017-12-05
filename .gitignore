@@ -6,3 +6,4 @@ vendor/
 src/
 .DS_Store
 .idea
+.vscode/
