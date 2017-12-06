@@ -44,13 +44,6 @@ var (
 
 func main() {
 	flag.Parse()
-
-	client := redis.NewClient(&redis.Options{
-		Addr:     "localhost:6379",
-		Password: "", // no password set
-		DB:       0,  // use default DB
-	})
-
 	switch *logFormat {
 	case "json":
 		log.SetFormatter(&log.JSONFormatter{})
@@ -115,10 +108,16 @@ func main() {
 		http.Handle(*metricPath, prometheus.Handler())
 	}
 
+	client := redis.NewClient(&redis.Options{
+		Addr:     "localhost:6379",
+		Password: "", // no password set
+		DB:       0,  // use default DB
+	})
+
 	http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
 		pong, err := client.Ping().Result()
 		fmt.Println(pong, err)
-		if pong == "PONG" {
+		if err == nil {
 			w.Write([]byte("OK!\n"))
 		} else {
 			w.WriteHeader(http.StatusInternalServerError)
